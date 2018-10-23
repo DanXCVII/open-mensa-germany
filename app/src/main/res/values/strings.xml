@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">OpenMensa</string>
+    <!-- Settings Menu Item -->
+    <string name="settings_menu_item">Settings</string>
+    <!-- Settings Activity Title -->
+    <string name="settings_button_title">YourMensa Settings</string>
+    <!-- Add Mensa Button Title -->
+    <string name="add_button_title">Add Mensa</string>
+    <!-- Maximum reached Toast Message -->
+    <string name="max_reached">Maximum of 5 Mensas reached</string>
+
+</resources>
