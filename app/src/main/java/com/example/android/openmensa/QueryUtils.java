@@ -18,6 +18,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -137,14 +138,14 @@ public final class QueryUtils {
      * Return a list of {@link Mensa} objects that has been built up from
      * parsing the given JSON response.
      */
-    private static List<Mensa> extractFeatureFromJson(String earthquakeJSON) {
+    private static List<Mensa> extractMensaFromJson(String mensaJSON) {
         // If the JSON string is empty or null, then return early.
-        if (TextUtils.isEmpty(earthquakeJSON)) {
+        if (TextUtils.isEmpty(mensaJSON)) {
             return null;
         }
 
         // Create an empty ArrayList that we can start adding earthquakes to
-        List<Mensa> earthquakes = new ArrayList<>();
+        List<Mensa> mensas = new ArrayList<>();
 
         // Try to parse the JSON response string. If there's a problem with the way the JSON
         // is formatted, a JSONException exception object will be thrown.
@@ -152,17 +153,28 @@ public final class QueryUtils {
         try {
 
             // Create a JSONObject from the JSON response string
-            JSONObject baseJsonResponse = new JSONObject(earthquakeJSON);
+            JSONObject baseJsonResponse = new JSONObject(mensaJSON);
+
+            Iterator keyIterator = baseJsonResponse.keys();
+            List<String> keyList = new ArrayList<>();
+            while(keyIterator.hasNext()) {
+                String key = (String) keyIterator.next();
+                keyList.add(key);
+            }
+
+            for(String key : keyList) {
+                JSONObject xObject = baseJsonResponse.getJSONObject(key);
+            }
 
             // Extract the JSONArray associated with the key called "features",
             // which represents a list of features (or earthquakes).
-            JSONArray earthquakeArray = baseJsonResponse.getJSONArray("features");
+            JSONArray mensaArray = baseJsonResponse.getJSONArray("features");
 
             // For each earthquake in the earthquakeArray, create an {@link Earthquake} object
-            for (int i = 0; i < earthquakeArray.length(); i++) {
+            for (int i = 0; i < mensaArray.length(); i++) {
 
                 // Get a single Mensa at position i within the list of Mensas
-                JSONObject currentMensa = earthquakeArray.getJSONObject(i);
+                JSONObject currentMensa = mensaArray.getJSONObject(i);
 
                 // For a given Mensa, extract the JSONObject associated with the
                 // key called "properties", which represents a list of all properties
@@ -197,7 +209,7 @@ public final class QueryUtils {
         }
 
         // Return the list of earthquakes
-        return earthquakes;
+        return mensas;
     }
 
 }
