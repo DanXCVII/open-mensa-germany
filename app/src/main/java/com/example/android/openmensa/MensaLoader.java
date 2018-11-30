@@ -16,7 +16,7 @@ public class MensaLoader extends AsyncTaskLoader<List<Mensa>> {
     private String mUrl;
 
     /**
-     * Constructs a new {@link EarthquakeLoader}.
+     * Constructs a new {@link MensaLoader}.
      *
      * @param context of the activity
      * @param url to load data from

@@ -164,6 +164,14 @@ public final class QueryUtils {
 
             for(String key : keyList) {
                 JSONObject xObject = baseJsonResponse.getJSONObject(key);
+                String mensaName = xObject.getString("name");
+                String mensaCity = xObject.getString("city");
+                String mensaAddress = xObject.getString("address");
+                JSONArray mensaCoordinates = xObject.getJSONArray("coordinates");
+                double coordinate1 = mensaCoordinates.getDouble(0);
+                double coordinate2 = mensaCoordinates.getDouble(1);
+
+                Mensa mensa = new Mensa(mensaName, mensaCity, coordinate1, coordinate2);
             }
 
             // Extract the JSONArray associated with the key called "features",

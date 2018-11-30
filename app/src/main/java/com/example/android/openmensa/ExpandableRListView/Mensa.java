@@ -6,11 +6,17 @@ import android.os.Parcelable;
 public class Mensa implements Parcelable {
 
     private String name;
-    private String geoTag;
+    private String city;
+    private String coordinate1;
+    private String coordinate2;
+    private String address;
 
-    public Mensa(String name, String geoTag) {
+    public Mensa(String name, String city, String coordinate1, String coordinate2, String address) {
         this.name = name;
-        this.geoTag = geoTag;
+        this.city = city;
+        this.coordinate1 = coordinate1;
+        this.coordinate2 = coordinate2;
+        this.address = address;
     }
 
     protected Mensa(Parcel in) {
@@ -21,8 +27,20 @@ public class Mensa implements Parcelable {
         return name;
     }
 
-    public String getGeoTag() {
-        return geoTag;
+    public String getCity() {
+        return city;
+    }
+
+    public String getCoordinate1() {
+        return coordinate1;
+    }
+
+    public String getCoordinate2() {
+        return coordinate2;
+    }
+
+    public String getAddress() {
+        return address;
     }
 
     @Override
