@@ -7,11 +7,11 @@ public class Mensa implements Parcelable {
 
     private String name;
     private String city;
-    private String coordinate1;
-    private String coordinate2;
+    private double coordinate1;
+    private double coordinate2;
     private String address;
 
-    public Mensa(String name, String city, String coordinate1, String coordinate2, String address) {
+    public Mensa(String name, String city, double coordinate1, double coordinate2, String address) {
         this.name = name;
         this.city = city;
         this.coordinate1 = coordinate1;
@@ -31,11 +31,11 @@ public class Mensa implements Parcelable {
         return city;
     }
 
-    public String getCoordinate1() {
+    public double getCoordinate1() {
         return coordinate1;
     }
 
-    public String getCoordinate2() {
+    public double getCoordinate2() {
         return coordinate2;
     }
 
