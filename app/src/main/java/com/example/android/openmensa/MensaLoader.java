@@ -41,7 +41,7 @@ public class MensaLoader extends AsyncTaskLoader<List<Mensa>> {
         }
 
         // Perform the network request, parse the response, and extract a list of earthquakes.
-        List<Mensa> earthquakes = QueryUtils.fetchEarthquakeData(mUrl);
+        List<Mensa> earthquakes = QueryUtils.fetchMensaData(mUrl);
         return earthquakes;
     }
 }

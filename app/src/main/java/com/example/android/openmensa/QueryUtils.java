@@ -40,7 +40,7 @@ public final class QueryUtils {
     /**
      * Query the USGS dataset and return a list of {@link com.example.android.openmensa.ExpandableRListView.Mensa} objects.
      */
-    public static List<Mensa> fetchEarthquakeData(String requestUrl) {
+    public static List<Mensa> fetchMensaData(String requestUrl) {
         // Create URL object
         URL url = createUrl(requestUrl);
 
@@ -53,7 +53,7 @@ public final class QueryUtils {
         }
 
         // Extract relevant fields from the JSON response and create a list of {@link Mensa}s
-        List<Mensa> mensas = extractFeatureFromJson(jsonResponse);
+        List<Mensa> mensas = extractMensaFromJson(jsonResponse);
 
         // Return the list of {@link Earthquake}s
         return mensas;
@@ -164,6 +164,7 @@ public final class QueryUtils {
 
             for(String key : keyList) {
                 JSONObject xObject = baseJsonResponse.getJSONObject(key);
+
                 String mensaName = xObject.getString("name");
                 String mensaCity = xObject.getString("city");
                 String mensaAddress = xObject.getString("address");
@@ -171,41 +172,8 @@ public final class QueryUtils {
                 double coordinate1 = mensaCoordinates.getDouble(0);
                 double coordinate2 = mensaCoordinates.getDouble(1);
 
-                Mensa mensa = new Mensa(mensaName, mensaCity, coordinate1, coordinate2);
-            }
+                Mensa mensa = new Mensa(mensaName, mensaCity, coordinate1, coordinate2, mensaAddress);
 
-            // Extract the JSONArray associated with the key called "features",
-            // which represents a list of features (or earthquakes).
-            JSONArray mensaArray = baseJsonResponse.getJSONArray("features");
-
-            // For each earthquake in the earthquakeArray, create an {@link Earthquake} object
-            for (int i = 0; i < mensaArray.length(); i++) {
-
-                // Get a single Mensa at position i within the list of Mensas
-                JSONObject currentMensa = mensaArray.getJSONObject(i);
-
-                // For a given Mensa, extract the JSONObject associated with the
-                // key called "properties", which represents a list of all properties
-                // for that Mensa.
-                JSONObject properties = currentMensa.getJSONObject("properties");
-
-                // Extract the value for the key called "mag"
-                double magnitude = properties.getDouble("mag");
-
-                // Extract the value for the key called "place"
-                String location = properties.getString("place");
-
-                // Extract the value for the key called "time"
-                long time = properties.getLong("time");
-
-                // Extract the value for the key called "url"
-                String url = properties.getString("url");
-
-                // Create a new {@link Mensa} object with the magnitude, location, time,
-                // and url from the JSON response.
-                Mensa mensa = new Mensa(magnitude, location, time, url);
-
-                // Add the new {@link Mensa} to the list of Mensas.
                 mensas.add(mensa);
             }
 
@@ -219,7 +187,5 @@ public final class QueryUtils {
         // Return the list of earthquakes
         return mensas;
     }
-
-}
 
 }
