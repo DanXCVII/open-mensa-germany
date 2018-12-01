@@ -8,5 +8,7 @@
     <string name="add_button_title">Add Mensa</string>
     <!-- Maximum reached Toast Message -->
     <string name="max_reached">Maximum of 5 Mensas reached</string>
+    <!-- Maximum reached Toast Message -->
+    <string name="no_mensas">No Mensas found</string>
 
 </resources>
