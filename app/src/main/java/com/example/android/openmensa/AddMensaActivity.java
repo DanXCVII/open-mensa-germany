@@ -98,7 +98,7 @@ public class AddMensaActivity extends AppCompatActivity implements LoaderManager
         // data set. This will trigger the ListView to update.
         if (earthquakes != null && !earthquakes.isEmpty()) {
             //mAdapter.addAll(earthquakes);
-            updateUi(earthquakes);
+            //-------------------------------------updateUi(earthquakes); // Needs to be implemented
         }
     }
 
